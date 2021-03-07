@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>B.A. Productions</title>
-</head>
-<body>
-    <nav>
+  </head>
+  <body>
+    <div id="frontpage_color" class="bg_color">
+      <header></header>
 
+      <section id="projects_section"></section>
 
+      <footer>
+        <p>B.A. Productions, 2021</p>
+      </footer>
+    </div>
 
-    </nav>
-</body>
+    <template id="projects_temp">
+      <div class="project_container">
+        <h1 class="prj_heading"></h1>
+        <h2 class="prj_sub_heading"></h2>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+    <script>
+      "use strict";
+
+      window.addEventListener("DOMContentLoaded", init);
+      function init() {
+        const url = "http://rasmuskmoller.dk/b_a_productions/wordpress/wp-json/wp/v2/projekt";
+        loadJson(url, displayData);
+      }
+
+      async function loadJson(url, callback) {
+        const respons = await fetch(url);
+        const jsonData = await respons.json();
+        callback(jsonData);
+      }
+
+      function displayData(jsonData) {
+        const temp = document.querySelector("#projects_temp");
+        const container = document.querySelector("#projects_section");
+
+        jsonData.forEach((project) => {
+          const klon = temp.cloneNode(true).content;
+
+          klon.querySelector(".prj_heading").textContent = project.kundenavn;
+          klon.querySelector(".prj_sub_heading").textContent = project.projekttitel;
+          klon.querySelector(".project_container").dataset.id = project.id;
+
+          klon.querySelector(".project_container").addEventListener("click", singleView);
+
+          container.appendChild(klon);
+        });
+      }
+
+      function singleView() {
+        const id = this.dataset.id;
+        window.location.href = "projekt.html?id=" + id;
+      }
+    </script>
+  </body>
 </html>

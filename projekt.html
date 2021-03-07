@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Projekt</title>
+  </head>
+  <body>
+    <div id="projekt_color" class="bg_color">
+      <header></header>
+
+      <section id="projects_section">
+        <div class="left">
+          <h1></h1>
+          <h2></h2>
+          <p></p>
+        </div>
+
+        <div class="right">
+          <img src="" alt="" />
+          <audio src="" controls></audio>
+          <div>
+            <a href="">Lyt på Apple Podcasts</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>B.A. Productions</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      "use strict";
+
+      window.addEventListener("DOMContentLoaded", getId);
+
+      function getId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        const url = "http://rasmuskmoller.dk/b_a_productions/wordpress/wp-json/wp/v2/projekt/" + id;
+
+        loadJson(url, displayData);
+      }
+
+      async function loadJson(url, callback) {
+        const respons = await fetch(url);
+        const jsonData = await respons.json();
+        callback(jsonData);
+        console.log(jsonData);
+      }
+
+      function displayData(project) {
+        console.log(project);
+        document.querySelector("h1").textContent = project.kundenavn;
+        document.querySelector("h2").textContent = project.projekttitel;
+        document.querySelector("p").innerHTML = project.content.rendered;
+        document.querySelector("img").src = project.billede.guid;
+        document.querySelector("a").href = project.link;
+        document.querySelector("audio").src = project.lydfil.guid;
+      }
+    </script>
+  </body>
+</html>
