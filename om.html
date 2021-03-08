@@ -35,7 +35,7 @@
       window.addEventListener("DOMContentLoaded", init);
 
       function init() {
-        const url = "http://rasmuskmoller.dk/b_a_productions/wordpress/wp-json/wp/v2/info/23";
+        const url = "http://mathaeusss.dk/bap_wordpress/wp-json/wp/v2/info/25";
         loadJson(url, displayData);
       }
 
@@ -48,9 +48,9 @@
 
       function displayData(info) {
         document.querySelector("#info_section img").src = info.billede.guid;
-        document.querySelector("#info_section #what").textContent = info.hvad_er_bap;
-        document.querySelector("#info_section #who").textContent = info.hvem_er_bap;
-        document.querySelector("#info_section #when").textContent = info.etableret_i;
+        document.querySelector("#info_section #what").textContent = info.hvad;
+        document.querySelector("#info_section #who").textContent = info.hvem;
+        document.querySelector("#info_section #when").textContent = info.hvornr;
       }
     </script>
   </body>
