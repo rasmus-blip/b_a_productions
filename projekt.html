@@ -9,20 +9,20 @@
   </head>
   <body>
     <div id="projekt_color" class="bg_color">
-      <header></header>
+      <header id="projekt_header"></header>
 
       <section id="projects_section">
-        <div class="left">
+        <div id="projects_container">
           <h1></h1>
           <h2></h2>
           <p></p>
-        </div>
-
-        <div class="right">
-          <img src="" alt="" />
-          <audio src="" controls></audio>
-          <div>
+          <div class="justify">
             <a href="">Lyt på Apple Podcasts</a>
+          </div>
+
+          <img src="" alt="" />
+          <div class="audio_container">
+            <audio src="" controls controlsList="nodownload"></audio>
           </div>
         </div>
       </section>
@@ -60,7 +60,7 @@
         document.querySelector("h2").textContent = project.projekttitel;
         document.querySelector("p").innerHTML = project.content.rendered;
         document.querySelector("img").src = project.billede.guid;
-        document.querySelector("a").href = project.link;
+        document.querySelector("#projects_section a").href = project.link;
         document.querySelector("audio").src = project.lydfil.guid;
       }
     </script>

@@ -11,6 +11,11 @@
   --om_color: #dbe7ec;
   --kontakt_color: #a4ffd4;
   --projekt_color: #e9e5cd;
+
+  --paragraph: 0.8rem;
+  --heading1: 1.5rem;
+  --heading2: 1rem;
+  --menu: 1.2rem;
 }
 
 img {
@@ -28,23 +33,20 @@ a {
 a {
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.2rem;
-}
-
-.bg_color {
-  width: 100vw;
-  height: 100vh;
+  font-size: var(--menu);
 }
 
 section {
   padding: 60px 10px 10px 10px;
-  min-height: calc(100vh - 25px);
+  min-height: calc(100vh - 15px);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* HEADER */
 
 #logo {
-  font-size: 1.5rem;
+  font-size: var(--heading1);
   font-style: italic;
 }
 
@@ -52,8 +54,10 @@ header {
   position: fixed;
   height: 50px;
   top: 0;
+  left: 0;
   z-index: 4;
   width: 100%;
+  height: 50px;
   background-color: transparent;
   transition: all 0.8s;
 }
@@ -72,13 +76,44 @@ header {
   top: 0;
   transform-origin: top left;
   width: 100%;
-  transition: all 0.7s cubic-bezier(0.63, -0.65, 0.38, 1.57);
-  background-color: white;
+  height: 100vh;
+  transition: all 0.7s cubic-bezier(0.65, 0.01, 0.29, 0.99);
   z-index: -1;
   display: flex;
   flex-direction: column;
-  padding: 90px 10px 20px 10px;
-  transform: translateY(-13%);
+  padding: 80px 10px 20px 10px;
+}
+
+#front_header #menu {
+  background-color: rgba(255, 226, 208, 0.9);
+}
+
+#front_header {
+  background-color: rgba(255, 226, 208, 1);
+}
+
+#kontakt_header #menu {
+  background-color: rgba(164, 255, 212, 0.9);
+}
+
+#kontakt_header {
+  background-color: rgba(164, 255, 212, 1);
+}
+
+#om_header #menu {
+  background-color: rgba(219, 231, 236, 0.9);
+}
+
+#om_header {
+  background-color: rgba(219, 231, 236, 1);
+}
+
+#projekt_header #menu {
+  background-color: rgba(233, 229, 205, 0.9);
+}
+
+#projekt_header {
+  background-color: rgba(233, 229, 205, 1);
 }
 
 #menu a {
@@ -88,12 +123,7 @@ header {
 }
 
 #menu.hidden {
-  transform: translateY(-100%);
-}
-
-#menu.hidden a {
-  opacity: 0;
-  transform: translateX(-10%);
+  transform: translateX(100%);
 }
 
 /* BURGER_BTN */
@@ -158,12 +188,12 @@ header {
 }
 
 .prj_heading {
-  font-size: 1.5rem;
+  font-size: var(--heading1);
   margin: 0 0 5px 0;
 }
 
 .prj_sub_heading {
-  font-size: 1rem;
+  font-size: var(--heading2);
 }
 
 .project_container {
@@ -176,8 +206,207 @@ header {
   text-align: center;
 }
 
+/* KONTAKT */
+#kontakt_color {
+  background-color: var(--kontakt_color);
+}
+
+#kontakt_container {
+  margin: 60px 0 0 0;
+}
+
+#kontakt_container p {
+  font-weight: 700;
+  font-size: var(--heading1);
+  text-align: center;
+}
+#kontakt_container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* INFO */
+#info_color {
+  background-color: var(--om_color);
+}
+
+#info_text {
+  margin-top: 20px;
+}
+#info_text p {
+  line-height: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: var(--heading2);
+}
+
+/* PROJECTS */
+
+#projekt_color {
+  background-color: var(--projekt_color);
+}
+
+#projects_header {
+  background-color: var(--projekt_color);
+}
+
+#projects_section h1 {
+  font-size: var(--heading1);
+  margin: 0 0 10px 0;
+  grid-area: header;
+}
+#projects_section h2 {
+  font-size: var(--heading2);
+  margin: 0 0 10px 0;
+  grid-area: sub_header;
+}
+
+#projects_section p {
+  font-size: var(--paragraph);
+  line-height: 1.4rem;
+  margin: 0 0 10px 0;
+  grid-area: paragraph;
+}
+
+#projects_section img {
+  margin: 0 0 10px 0;
+  grid-area: image;
+}
+#projects_section .audio_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+  grid-area: player;
+}
+
+#projects_section .justify {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  grid-area: link;
+  max-height: 50px;
+}
+
+#projects_section a {
+  text-align: center;
+  font-size: var(--heading2);
+  border: 2px solid #7d50df;
+  border-radius: 10px;
+  color: #7d50df;
+  font-weight: 400;
+  padding: 13px 20px;
+  justify-self: center;
+}
+
+#projects_container {
+  display: grid;
+  grid-template-areas: "header" "sub_header" "image" "player" "paragraph" "link";
+}
+
 /* FOOTER */
 footer {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: var(--paragraph);
+  opacity: 0.7;
+}
+
+@media only screen and (min-width: 370px) {
+  :root {
+    --paragraph: 0.9rem;
+  }
+
+  section {
+    min-height: calc(100vh - 18px);
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  /* GENERAL */
+
+  #logo {
+    font-size: 2.5rem;
+  }
+
+  section {
+    padding: 100px 10px 10px 10px;
+    max-width: 1200px;
+  }
+
+  :root {
+    --front_p_color: #ffe2d0;
+    --om_color: #dbe7ec;
+    --kontakt_color: #a4ffd4;
+    --projekt_color: #e9e5cd;
+
+    --paragraph: 1rem;
+    --heading1: 2rem;
+    --heading2: 1.5rem;
+    --menu: 1.2rem;
+  }
+
+  /* HEADER */
+
+  #mobile_header {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* PROJECTS */
+
+  #projects_container {
+    grid-template-areas: "header none" "sub_header none" "paragraph image" "link player";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #projects_container a {
+    font-size: 1rem;
+    height: fit-content;
+  }
+
+  #projects_container p {
+    margin: 0 auto 20px auto;
+    max-width: 500px;
+  }
+
+  #projects_container h1 {
+    max-width: 500px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+  }
+  #projects_container h2 {
+    margin: 0 auto 20px auto;
+    max-width: 500px;
+    text-align: center;
+  }
+  #projects_container .justify {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  #projects_container img {
+    max-width: 70%;
+    margin: 0 auto 10px auto;
+  }
+
+  /* INFO */
+
+  #info_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #info_text p {
+    line-height: 1.6rem;
+  }
+
+  #info_section .img_container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #info_section img {
+    width: 65%;
+  }
 }

@@ -4,13 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Om</title>
   </head>
   <body>
-    <header></header>
+    <div id="info_color">
+      <header id="om_header"></header>
 
-    <section id="container"></section>
+      <section id="info_section">
+        <div class="img_container">
+          <img src="" alt="" />
+        </div>
+        <div id="info_text">
+          <p id="what"></p>
+          <p id="who"></p>
+          <p id="when"></p>
+        </div>
+      </section>
 
-    <footer></footer>
+      <footer>
+        <p>B.A. Productions</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+      "use strict";
+
+      window.addEventListener("DOMContentLoaded", init);
+
+      function init() {
+        const url = "http://rasmuskmoller.dk/b_a_productions/wordpress/wp-json/wp/v2/info/23";
+        loadJson(url, displayData);
+      }
+
+      async function loadJson(url, callback) {
+        const respons = await fetch(url);
+        const jsonData = await respons.json();
+        callback(jsonData);
+        console.log(jsonData);
+      }
+
+      function displayData(info) {
+        document.querySelector("#info_section img").src = info.billede.guid;
+        document.querySelector("#info_section #what").textContent = info.hvad_er_bap;
+        document.querySelector("#info_section #who").textContent = info.hvem_er_bap;
+        document.querySelector("#info_section #when").textContent = info.etableret_i;
+      }
+    </script>
   </body>
 </html>
